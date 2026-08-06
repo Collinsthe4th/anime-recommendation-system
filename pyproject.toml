@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "animrec"
+version = "1.0.0"
+description = "Content-based anime recommender (TF-IDF synopses + genre similarity), shared by the AnimRec web app"
+authors = [{ name = "Collins Akagha" }]
+requires-python = ">=3.10"
+dependencies = ["pandas>=2.0", "numpy>=1.24", "scikit-learn>=1.3"]
+
+[project.scripts]
+animrec = "animrec.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+animrec = ["data/*.csv"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
