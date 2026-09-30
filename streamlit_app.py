@@ -16,7 +16,10 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from animrec import AnimeRecommender  # noqa: E402
 
-st.set_page_config(page_title="AnimRec", page_icon="🎌", layout="wide")
+st.set_page_config(page_title="Anime Recommendation System", layout="wide")
+
+HEADER = "https://images.unsplash.com/photo-1613376023733-0a73315d9b06?auto=format&fit=crop&w=1600&h=340&q=80"
+st.image(HEADER, use_container_width=True)
 
 
 @st.cache_resource
@@ -26,8 +29,8 @@ def get_recommender() -> AnimeRecommender:
 
 rec = get_recommender()
 
-st.title("🎌 AnimRec: find your next anime")
-st.caption(f"Content-based recommendations from {len(rec.titles)} titles. Similarity = 80% synopsis (TF-IDF) + 20% shared genres.")
+st.title("Anime Recommendation System")
+st.caption(f"I built this recommender from {len(rec.titles)} anime titles. It compares synopses with TF-IDF (80% of the score) and shared genres (20%), and it shows why each title was picked.")
 
 mode = st.radio("Search by", ["A title I liked", "A description"], horizontal=True)
 c1, c2, c3 = st.columns([3, 1.4, 1])
@@ -80,5 +83,5 @@ with st.expander("How the model was evaluated"):
 
 st.markdown(
     "[Model source](https://github.com/Collinsthe4th/anime-recommendation-system) · "
-    "[Django version of this app](https://github.com/Collinsthe4th/animrec-django)"
+    "[Django version of this app](https://github.com/Collinsthe4th/animrec-django) · Header photo from Unsplash."
 )
